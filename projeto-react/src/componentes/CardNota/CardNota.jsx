@@ -17,6 +17,9 @@ class CardNota extends Component {
         <h4>{this.props.categoria}</h4>
                 </header>
                 <p className="card-nota_texto">{this.props.texto}</p>
+                {console.log(this.props._buscarFilmes)}
+                <p className="card-nota_texto">{this.props.pesquisa}</p>
+
             </section>
         );
     }

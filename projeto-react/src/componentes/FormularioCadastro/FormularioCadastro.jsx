@@ -1,11 +1,14 @@
 
 import React, { Component } from "react";
 import "./estilo.css";
+import axios from "axios";
+
 class FormularioCadastro extends Component {
   constructor(props) {
     super(props);
     this.titulo = "";
     this.texto = "";
+    this._pesquisa = {};
     this.categoria = "Sem Categoria";
     this.state = { categorias: [] }
 
@@ -40,8 +43,40 @@ class FormularioCadastro extends Component {
   _criarNota(evento) {
     evento.preventDefault();
     evento.stopPropagation();
-    this.props.criarNota(this.titulo, this.texto, this.categoria);
+    this._buscarFilmes(this.titulo).then(() => {
+      console.log("response:" + this._pesquisa);
+      console.log("this.titulo:" + this.titulo);
+
+      this.props.criarNota(this.titulo, this.texto, this.categoria, this._pesquisa);
+    });
+
   }
+
+ async _buscarFilmes(pesquisa) {
+  await axios.get(`http://www.omdbapi.com/?apikey=e6a338cb&s=${pesquisa}`).then((response) => {
+    
+      console.log(response.data.Search);
+      this._pesquisa = response.data.Search;
+    });
+  }
+
+// _criarNota(evento) {
+//   evento.preventDefault();
+//   evento.stopPropagation();
+//   this._pesquisa = this._buscarFilmes(this.titulo);
+//     console.log("response:" + this._pesquisa);
+//     console.log("this.titulo:" + this.titulo);
+//     this.props.criarNota(this.titulo, this.texto, this.categoria, this._pesquisa);
+// }
+
+// _buscarFilmes(pesquisa) {
+// axios.get(`http://www.omdbapi.com/?apikey=e6a338cb&s=${pesquisa}`).then((response) => {
+  
+//     console.log(response.data.Search);
+//    return response.data.Search;
+    
+//   });
+// }
 
   render() {
     return (

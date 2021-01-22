@@ -11,13 +11,12 @@ import "./assets/index.css";
 class App extends Component {
   constructor() {
     super();
-    this.categorias = new Categorias();
+    this.categorias= new Categorias();
     this.notas = new ArrayDeNotas();
     
   }
 
   render() {
-    let pesquisa ='spider';
 
     return (
       <section className="conteudo">
@@ -25,6 +24,7 @@ class App extends Component {
           categorias={this.categorias}
           criarNota={this.notas.adicionarNota.bind(this.notas)}
         />
+
         <main className="conteudo-principal">
           <ListaDeCategorias
             adicionarCategoria={this.categorias.adicionarCategoria.bind(this.categorias)}
