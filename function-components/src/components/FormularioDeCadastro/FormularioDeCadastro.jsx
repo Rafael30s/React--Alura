@@ -2,10 +2,22 @@ import React from 'react';
 import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
 
 function FormularioCadastro() {
+    let nome = "";
     return (
-        <form>
+        <form onSubmit={(event) => {
+            event.preventDefault();
+            console.log(nome);
+        }}>
 
-            <TextField id="nome" label="Nome" variant="outlined" fullWidth margin="normal" />
+            <TextField onChange={event => {
+                nome = event.target.value;
+
+                if (nome.length > 3) {
+                    nome = nome.substr(0, 3);
+                }
+
+            }}
+                id="nome" label="Nome" variant="outlined" fullWidth margin="normal" />
             <TextField id="sobrenome" label="Sobrenome" variant="outlined" fullWidth margin="normal" />
             <TextField id="cpf" label="CPF" variant="outlined" fullWidth margin="normal" />
             <FormControlLabel label="Promoções" control={
