@@ -29,12 +29,12 @@ class ListaDeNotas extends Component {
             <li className="lista-notas_item" key={index}>
               {"Nota:"+console.log(nota)}
 
-              {this.state.nota.pesquisa.map((filme,index)=>{
+              {/* {this.state.nota.pesquisa.map((filme,index)=>{
                 console.log(index+": "+ filme);
               }
 
 
-              )}
+              )} */}
               <CardNota 
               indice={index}
               apagarNota={this.props.apagarNota}
@@ -52,7 +52,7 @@ class ListaDeNotas extends Component {
               
               <CardNota 
               indice={index}
-              apagarNota={this.props.apagarNota}
+              apagarNota={this.props.apagarNota}F
               titulo={filme.Title} 
               texto={filme.Poster}
               categoria={filme.Year}
